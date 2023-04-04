@@ -8,11 +8,11 @@ const router = createRouter({
       component: () => import('@/views/layout/Layout.vue'),
       meta: { requiresVisitor: true },
       children: [
-        // {
-        //   path: '/senha-acesso',
-        //   component: () => import('@/views/accessPassword/AccessPassword.vue'),
-        //   meta: { requiresVisitor: true },
-        // },
+        {
+          path: '/senha-acesso',
+          component: () => import('@/views/accessPassword/Password.vue'),
+          meta: { requiresVisitor: true },
+        },
         {
           path: '/dados-pessoais',
           component: () => import('@/views/personalData/PersonalData.vue'),

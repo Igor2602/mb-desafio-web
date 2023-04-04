@@ -1,4 +1,4 @@
-import AccessPassword from './AccessPassword.vue';
+import Password from './Password.vue';
 import { shallowMount } from '@vue/test-utils';
 import { describe, it, vi, beforeEach, test, expect } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
@@ -10,11 +10,11 @@ useI18n.mockReturnValue({
   t: (tKey) => tKey,
 });
 
-describe('AccessPassword Component', () => {
+describe('Password Component', () => {
   let wrapper = null;
 
   beforeEach(() => {
-    wrapper = shallowMount(AccessPassword, {
+    wrapper = shallowMount(Password, {
       global: {
         plugins: [
           createTestingPinia({
