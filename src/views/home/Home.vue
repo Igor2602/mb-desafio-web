@@ -103,5 +103,9 @@ function required(value) {
     border-radius: 5px;
     @include font-format();
   }
+
+  .form__input--error {
+    @include font-format($size: 12px, $margin: 0, $color: red);
+  }
 }
 </style>

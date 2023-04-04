@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper__content">
+  <div class="wrapper__content" v-if="!LOADING_STATE">
     <Form @submit="onSubmit" :validation-schema="schema" class="step__form">
       <p class="form__welcome--text">{{ t('reviewYourInformation') }}</p>
 
@@ -88,6 +88,7 @@ const schema = Yup.object().shape({
 
 const { FORM_STATE } = storeToRefs(useFormStore());
 const { LOADING_DISPATCH } = useLoadingStore();
+const { LOADING_STATE } = storeToRefs(useLoadingStore());
 const snackbar = useSnackbar();
 const router = useRouter();
 

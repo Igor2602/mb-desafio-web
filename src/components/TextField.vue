@@ -12,7 +12,7 @@
       @input="handleChange"
       @blur="handleBlur"
     />
-    <p class="help-message" v-show="errorMessage || meta.valid">
+    <p class="textField__label error" v-show="errorMessage || meta.valid">
       {{ errorMessage || successMessage }}
     </p>
   </div>
@@ -82,10 +82,10 @@ function onInput(text) {
 
   &__label {
     @include font-format($size: 12px, $margin: 20px 0 5px);
-  }
 
-  &__error {
-    color: red;
+    &.error {
+      @include font-format($size: 12px, $margin: 0, $color: red);
+    }
   }
 }
 </style>
