@@ -10,7 +10,7 @@ const router = createRouter({
       children: [
         {
           path: '/senha-acesso',
-          component: () => import('@/views/accessPassword/AccessPasswordd.vue'),
+          component: () => import('@/views/accessPassword/AccessPassword.vue'),
           meta: { requiresVisitor: true },
         },
         {
