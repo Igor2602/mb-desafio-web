@@ -11,4 +11,4 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - "npm run dev" to run app
 - "npm run build" to build app
 - "npm run format" to format code
-- "npm run test:coverage to run tests
+- "npm run test:coverage" to run tests
