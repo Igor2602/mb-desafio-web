@@ -81,7 +81,7 @@ function onInput(text) {
   }
 
   &__label {
-    @include font-format($size: 15px, $margin: 20px 0 10px);
+    @include font-format($size: 12px, $margin: 20px 0 5px);
   }
 
   &__error {

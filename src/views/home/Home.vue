@@ -1,35 +1,42 @@
 <template>
   <div class="wrapper__home wrapper__content">
     <div>
-      <Form @submit="onSubmit" :validation-schema="schema" class="step__form">
+      <Form @submit="onSubmit" class="step__form">
         <p class="form__welcome--text">{{ t('welcome') }}</p>
 
-        <TextField
-          :label="t('emailAddress')"
+        <p class="form__input--text">{{ t('emailAddress') }}</p>
+        <Field
+          class="form__input"
           name="email"
-          :type="'email'"
-          :value="FORM_STATE.email"
+          type="email"
+          v-model="FORM_STATE.email"
+          :rules="validateEmail"
         />
+        <ErrorMessage name="email" class="form__input--error" />
 
         <div class="form__type--person--wrapper">
-          <input
+          <Field
             name="documentType"
             type="radio"
             value="PF"
             v-model="FORM_STATE.documentType"
+            :rules="required"
           />
           {{ t('physicalPerson') }}
-          <input
+
+          <Field
             class="secundary--input"
             name="documentType"
             type="radio"
             value="PJ"
             v-model="FORM_STATE.documentType"
+            :rules="required"
           />
           {{ t('legalPerson') }}
         </div>
-        <span>{{ errorMessage }}</span>
-        <button type="submit" class="form__btn--submit">
+        <ErrorMessage name="documentType" class="form__input--error" />
+
+        <button class="form__btn--submit">
           {{ t('continue') }}
         </button>
       </Form>
@@ -42,20 +49,12 @@ import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useFormStore } from '@/stores/form/form.store';
 import { useI18n } from 'vue-i18n';
-import TextField from '@/components/TextField.vue';
 
-import { Form } from 'vee-validate';
-import * as Yup from 'yup';
+import { Form, ErrorMessage, Field } from 'vee-validate';
 
 const { t } = useI18n({
   inheritLocale: true,
   useScope: 'local',
-});
-
-const schema = Yup.object().shape({
-  email: Yup.string()
-    .email(t('thisIsNotValidEmailAddress'))
-    .required(t('thisFieldIsRequired')),
 });
 
 const { FORM_STATE } = storeToRefs(useFormStore());
@@ -70,8 +69,39 @@ function onSubmit(values) {
   });
   router.push('/dados-pessoais');
 }
+
+function validateEmail(value) {
+  if (!value) {
+    return t('thisFieldIsRequired');
+  }
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  if (!regex.test(value)) {
+    return t('thisIsNotValidEmailAddress');
+  }
+  return true;
+}
+
+function required(value) {
+  if (value) {
+    return true;
+  }
+
+  return t('thisFieldIsRequired');
+}
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/global.scss';
+
+.wrapper__home {
+  .form__input--text {
+    @include font-format($size: 12px, $margin: 20px 0 5px);
+  }
+  .form__input {
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    @include font-format();
+  }
+}
 </style>

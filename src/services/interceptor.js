@@ -29,7 +29,7 @@ axiosApiInstance.interceptors.response.use(
         text: 'Ocorreu um erro',
       });
       localStorage.removeItem('ACCESS_TOKEN');
-      window.location.replace('/login');
+      window.location.replace('/');
     }
     return Promise.reject(error);
   }
