@@ -1,10 +1,12 @@
 <template>
   <div class="wrapper__content">
     <Form @submit="onSubmit" :validation-schema="schema" class="step__form">
-      <p class="form__welcome--text">Revise suas informações</p>
+      <p class="form__welcome--text">{{ t('reviewYourInformation') }}</p>
 
       <TextField
-        :label="FORM_STATE.documentType === 'PF' ? 'Nome' : 'Razão Social'"
+        :label="
+          FORM_STATE.documentType === 'PF' ? t('name') : t('corporateName')
+        "
         name="name"
         :type="'text'"
         :value="FORM_STATE.name"
@@ -24,9 +26,7 @@
 
       <TextField
         :label="
-          FORM_STATE.documentType === 'PF'
-            ? 'Data de nascimento'
-            : 'Data de abertura'
+          FORM_STATE.documentType === 'PF' ? t('dateOfBirth') : t('openingDate')
         "
         name="date"
         :type="'text'"
@@ -35,7 +35,7 @@
       />
 
       <TextField
-        :label="'Telefone'"
+        :label="t('telephone')"
         name="phone"
         :type="'text'"
         :value="FORM_STATE.phone"
@@ -43,7 +43,7 @@
       />
 
       <TextField
-        :label="'Sua senha'"
+        :label="t('yourPassword')"
         name="password"
         :type="'password'"
         :value="FORM_STATE.password"
@@ -51,9 +51,11 @@
 
       <div class="form__buttons--wrapper">
         <button class="form__btn--submit return" @click="backStep()">
-          Voltar
+          {{ t('return') }}
         </button>
-        <button type="submit" class="form__btn--submit">Coninuar</button>
+        <button type="submit" class="form__btn--submit">
+          {{ t('register') }}
+        </button>
       </div>
     </Form>
   </div>
@@ -69,13 +71,19 @@ import { home } from '@/services/index';
 import TextField from '@/components/TextField.vue';
 import { Form } from 'vee-validate';
 import * as Yup from 'yup';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local',
+});
 
 const schema = Yup.object().shape({
-  name: Yup.string().required(),
-  document: Yup.string().required(),
-  date: Yup.string().required(),
-  phone: Yup.string().required(),
-  password: Yup.string().required(),
+  name: Yup.string().required(t('thisFieldIsRequired')),
+  document: Yup.string().required(t('thisFieldIsRequired')),
+  date: Yup.string().required(t('thisFieldIsRequired')),
+  phone: Yup.string().required(t('thisFieldIsRequired')),
+  password: Yup.string().required(t('thisFieldIsRequired')),
 });
 
 const { FORM_STATE } = storeToRefs(useFormStore());
@@ -93,14 +101,14 @@ async function onSubmit() {
       console.log(response.data, 'SUCCESS');
       snackbar.add({
         type: 'success',
-        text: 'Cadastro efetuado com sucesso!',
+        text: t('registrationSuccessfullyComplete'),
       });
     },
     (e) => {
       console.log(e, 'ERROR');
       snackbar.add({
         type: 'error',
-        text: 'Erro ao realizar o cadastro',
+        text: t('errorWhenRegistering'),
       });
     },
     () => {

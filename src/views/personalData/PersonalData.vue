@@ -2,12 +2,14 @@
   <div class="wrapper__content">
     <Form @submit="onSubmit" :validation-schema="schema" class="step__form">
       <p v-if="FORM_STATE.documentType === 'PF'" class="form__welcome--text">
-        Pessoa Física
+        {{ t('physicalPerson') }}
       </p>
-      <p v-else class="form__welcome--text">Pessoa Jurídica</p>
+      <p v-else class="form__welcome--text">{{ t('legalPerson') }}</p>
 
       <TextField
-        :label="FORM_STATE.documentType === 'PF' ? 'Nome' : 'Razão Social'"
+        :label="
+          FORM_STATE.documentType === 'PF' ? t('name') : t('corporateName')
+        "
         name="name"
         :type="'text'"
         :value="FORM_STATE.name"
@@ -27,9 +29,7 @@
 
       <TextField
         :label="
-          FORM_STATE.documentType === 'PF'
-            ? 'Data de nascimento'
-            : 'Data de abertura'
+          FORM_STATE.documentType === 'PF' ? t('dateOfBirth') : t('openingDate')
         "
         name="date"
         :type="'text'"
@@ -38,7 +38,7 @@
       />
 
       <TextField
-        :label="'Telefone'"
+        :label="t('telephone')"
         name="phone"
         :type="'text'"
         :value="FORM_STATE.phone"
@@ -47,9 +47,11 @@
 
       <div class="form__buttons--wrapper">
         <button class="form__btn--submit return" @click="backStep()">
-          Voltar
+          {{ t('return') }}
         </button>
-        <button type="submit" class="form__btn--submit">Coninuar</button>
+        <button type="submit" class="form__btn--submit">
+          {{ t('continue') }}
+        </button>
       </div>
     </Form>
   </div>
@@ -59,16 +61,22 @@
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useFormStore } from '@/stores/form/form.store';
+import { useI18n } from 'vue-i18n';
 import TextField from '@/components/TextField.vue';
 
 import { Form } from 'vee-validate';
 import * as Yup from 'yup';
 
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local',
+});
+
 const schema = Yup.object().shape({
-  name: Yup.string().required(),
-  document: Yup.string().required(),
-  date: Yup.string().required(),
-  phone: Yup.string().required(),
+  name: Yup.string().required(t('thisFieldIsRequired')),
+  document: Yup.string().required(t('thisFieldIsRequired')),
+  date: Yup.string().required(t('thisFieldIsRequired')),
+  phone: Yup.string().required(t('thisFieldIsRequired')),
 });
 
 const { FORM_STATE } = storeToRefs(useFormStore());

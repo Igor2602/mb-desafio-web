@@ -1,3 +1,21 @@
 {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "emailAddress": "Email address",
+    "physicalPerson": "Physical person",
+    "legalPerson": "Legal person",
+    "continue": "Continue",
+    "corporateName": "Corporate Name",
+    "name": "Name",
+    "dateOfBirth": "Date of birth",
+    "openingDate": "Opening date",
+    "telephone": "Telephone",
+    "return": "Return",
+    "accessPassword": "Access password",
+    "yourPassword": "Your password",
+    "register": "Register",
+    "registrationSuccessfullyComplete": "Registration successfully Complete!",
+    "errorWhenRegistering": "Error when registering",
+    "thisFieldIsRequired": "This field is required!",
+    "reviewYourInformation": "Review your information",
+    "thisIsNotValidEmailAddress": "This is not a valid email address"
 }

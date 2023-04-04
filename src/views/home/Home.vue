@@ -5,7 +5,7 @@
         <p class="form__welcome--text">{{ t('welcome') }}</p>
 
         <TextField
-          :label="'Endereço de e-mail'"
+          :label="t('emailAddress')"
           name="email"
           :type="'email'"
           :value="FORM_STATE.email"
@@ -18,7 +18,7 @@
             value="PF"
             v-model="FORM_STATE.documentType"
           />
-          Pessoa física
+          {{ t('physicalPerson') }}
           <input
             class="secundary--input"
             name="documentType"
@@ -26,10 +26,12 @@
             value="PJ"
             v-model="FORM_STATE.documentType"
           />
-          Pessoa jurídica
+          {{ t('legalPerson') }}
         </div>
         <span>{{ errorMessage }}</span>
-        <button type="submit" class="form__btn--submit">Coninuar</button>
+        <button type="submit" class="form__btn--submit">
+          {{ t('continue') }}
+        </button>
       </Form>
     </div>
   </div>
@@ -37,7 +39,6 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { isRequired, validateEmail } from '@/utils/validate.js';
 import { storeToRefs } from 'pinia';
 import { useFormStore } from '@/stores/form/form.store';
 import { useI18n } from 'vue-i18n';
@@ -46,18 +47,21 @@ import TextField from '@/components/TextField.vue';
 import { Form } from 'vee-validate';
 import * as Yup from 'yup';
 
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local',
+});
+
 const schema = Yup.object().shape({
-  email: Yup.string().email().required(),
+  email: Yup.string()
+    .email(t('thisIsNotValidEmailAddress'))
+    .required(t('thisFieldIsRequired')),
 });
 
 const { FORM_STATE } = storeToRefs(useFormStore());
 const { FORM_DISPATCH } = useFormStore();
 
 const router = useRouter();
-const { t } = useI18n({
-  inheritLocale: true,
-  useScope: 'local',
-});
 
 function onSubmit(values) {
   FORM_DISPATCH({

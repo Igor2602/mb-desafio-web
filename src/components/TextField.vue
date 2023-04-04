@@ -27,14 +27,15 @@ const props = defineProps({
     type: String,
     default: 'text',
   },
+  type: {
+    type: String,
+    default: 'text',
+  },
   name: {
     type: String,
     required: true,
   },
   mask: {
-    type: String,
-  },
-  errorMessage: {
     type: String,
   },
   successMessage: {

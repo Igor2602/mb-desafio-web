@@ -41,6 +41,7 @@ function changeLocale(value) {
     padding: 5px;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
   }
 }
 </style>

@@ -1,18 +1,22 @@
 <template>
   <div class="wrapper__content">
     <Form @submit="onSubmit" :validation-schema="schema" class="step__form">
-      <p class="form__welcome--text">Senha de acesso</p>
+      <p class="form__welcome--text">{{ t('accessPassword') }}</p>
 
       <TextField
-        :label="'Sua senha'"
+        :label="t('yourPassword')"
         name="password"
         :type="'password'"
         :value="FORM_STATE.password"
       />
 
       <div class="form__buttons--wrapper">
-        <button class="form__btn--submit return" @click="backStep()"> Voltar </button>
-        <button type="submit" class="form__btn--submit">Coninuar</button>
+        <button class="form__btn--submit return" @click="backStep()">
+          {{ t('return') }}
+        </button>
+        <button type="submit" class="form__btn--submit">
+          {{ t('continue') }}
+        </button>
       </div>
     </Form>
   </div>
@@ -25,9 +29,15 @@ import { useFormStore } from '@/stores/form/form.store';
 import TextField from '@/components/TextField.vue';
 import { Form } from 'vee-validate';
 import * as Yup from 'yup';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local',
+});
 
 const schema = Yup.object().shape({
-  password: Yup.string().required(),
+  password: Yup.string().required(t('thisFieldIsRequired')),
 });
 
 const { FORM_STATE } = storeToRefs(useFormStore());

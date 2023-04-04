@@ -1,3 +1,22 @@
 {
-    "welcome": "Seja bem vindo(a)"
+    "welcome": "Seja bem vindo(a)",
+    "emailAddress": "Endereço de e-mail",
+    "physicalPerson": "Pessoa física",
+    "legalPerson": "Pessoa jurídica",
+    "continue": "Continuar",
+    "corporateName": "Razão Social",
+    "name": "Nome",
+    "dateOfBirth": "Data de nascimento",
+    "openingDate": "Data de abertura",
+    "telephone": "Telefone",
+    "return": "Voltar",
+    "accessPassword": "Senha de acesso",
+    "yourPassword": "Sua senha",
+    "register": "Cadastrar",
+    "registrationSuccessfullyComplete": "Cadastro efetuado com sucesso!",
+    "errorWhenRegistering": "Erro ao realizar o cadastro",
+    "thisFieldIsRequired": "Este campo é obrigatório!",
+    "reviewYourInformation": "Revise suas informações",
+    "thisIsNotValidEmailAddress": "Este não é um endereço de e-mail válido"
+
 }
