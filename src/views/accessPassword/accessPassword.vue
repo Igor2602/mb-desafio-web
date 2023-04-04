@@ -11,9 +11,7 @@
       />
 
       <div class="form__buttons--wrapper">
-        <button class="form__btn--submit return" @click="backStep()">
-          Voltar
-        </button>
+        <button class="form__btn--submit return" @click="backStep()"> Voltar </button>
         <button type="submit" class="form__btn--submit">Coninuar</button>
       </div>
     </Form>
