@@ -1,0 +1,42 @@
+.step__form {
+  width: 230px;
+  .form__welcome--text {
+    @include font-format($size: 25px, $weight: bold, $margin: 5px 0 0);
+  }
+
+  .form__type--person--wrapper {
+    margin-top: 15px;
+    display: flex;
+
+    input {
+      margin: 0 5px 0 0;
+
+      &.secundary--input {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .form__buttons--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form__btn--submit {
+    width: 100%;
+    @include font-format($size: 15px, $color: #ffffff, $margin: 20px 0 0);
+    background: #ff9900;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &.return {
+      margin-right: 10px;
+      color: #ff9900;
+      background-color: #ffffff;
+      border: 1px solid #ff9900;
+    }
+  }
+}

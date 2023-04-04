@@ -1,0 +1,20 @@
+@import './fonts';
+@import './steps';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+body {
+  margin: 0 !important;
+  @include font-format();
+}
